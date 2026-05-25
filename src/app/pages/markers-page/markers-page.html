@@ -1,1 +1,33 @@
-<p>markers-page works!</p>,
+<div #map class="h-[calc(100vh-64px)]"></div>
+
+<section class="fixed w-[360px] bg-white rounded top-20 left-20 p-5">
+  <h2 class="text-xl font-bold text-black mb-2">Marcadores</h2>
+
+  <div class="flex flex-col gap-2">
+
+    @for (marker of markers(); track marker.id) {
+      <div class="form-control"
+      (click)="flyToMarker(marker.maplibreglMarker.getLngLat())"
+      (dblclick)="deleteMarker(marker)">
+      <label class="label cursor-pointer">
+        <span class="label-text text-black text-xs">
+          {{ marker.maplibreglMarker.getLngLat() | json}}
+        </span>
+        <input
+          type="radio"
+          name="radio-10"
+          class="radio"
+          [style]="{backgroundColor: marker.maplibreglMarker._color}"
+          checked="checked" />
+      </label>
+    </div>
+    } @empty {
+      <div class="flex justify-center items-center bg-blue-100 rounded py-5">
+        <p class="text-xs text-secondary">
+          No hay marcadores
+        </p>
+      </div>
+    }
+
+  </div>
+</section>

@@ -30,7 +30,6 @@ import maplibregl from 'maplibre-gl';
 })
 export class FullscreenMapPage implements AfterViewInit {
   divElement = viewChild<ElementRef>('map');
-
   map = signal<maplibregl.Map|null>(null);
 
   zoom =signal(12);
